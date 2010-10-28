@@ -150,11 +150,11 @@ use namespace::clean -except => 'meta';
 use Sub::Exporter -setup => {
   exports => { Payload => \'__payload' },
 };
-sub __payload { sub { 'Throwable::X::Meta::Attribute::Payload' } }
+sub __payload { sub { 'Role::HasPayload::Meta::Attribute::Payload' } }
 
 with(
   'Throwable',
-  'Throwable::X::AutoPayload',
+  'Role::HasPayload::Merged',
   'Role::Identifiable::HasIdent',
   'Role::Identifiable::HasTags',
 
@@ -168,6 +168,9 @@ with(
     init_arg => 'ident',
   },
 );
+
+has '+ident'       => (isa => 'Throwable::X::_Int');
+has '+message_fmt' => (isa => 'Throwable::X::_VisibleStr');
 
 has is_public => (
   is  => 'ro',
