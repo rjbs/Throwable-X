@@ -70,7 +70,7 @@ in a half dozen roles to understand how to benefit from Throwable::X.
 
 =for :list
 * L<Throwable>
-* L<Throwable::X::AutoPayload>
+* L<Role::HasPayload::Merged>
 * L<Role::HasMessage::Errf>
 * L<Role::Identifiable::HasIdent>
 * L<Role::Identifiable::HasTags>
@@ -111,12 +111,14 @@ L<Role::HasMessage::Errf>.
 =head2 Features for Serialization
 
 The C<payload> method returns a hashref containing the name and value of every
-attribute with the trait L<Throwable::X::Meta::Attribute::Payload>.  There's
-nothing more to it than that.  It's used by the message formatting facility
-descibed above, and is also useful for serializing exceptions.  Assuming no
-complex values are present in the payload, the structure below should be easy
-to serialize and use in another program, for example in a web browser receiving
-a serialized Throwable::X via JSON in response to an XMLHTTPRequest.
+attribute with the trait L<Role::HasPayload::Meta::Attribute::Payload>, merged
+with the hashref (if any) provided as the C<payload> entry to the constructor.
+There's nothing more to it than that.  It's used by the message formatting
+facility descibed above, and is also useful for serializing exceptions.
+Assuming no complex values are present in the payload, the structure below
+should be easy to serialize and use in another program, for example in a web
+browser receiving a serialized Throwable::X via JSON in response to an
+XMLHTTPRequest.
 
   {
     ident   => $err->ident,
@@ -127,7 +129,7 @@ a serialized Throwable::X via JSON in response to an XMLHTTPRequest.
 
 There is no specific code present to support doing this, yet.
 
-The C<payload> method is implemented by L<Throwable::X::AutoPayload>.
+The C<payload> method is implemented by L<Role::HasPayload::Merged>.
 
 The C<public> attribute, checked with the C<is_public> method, is meant to
 indicate whether the exception's message is safe to display to end users or
