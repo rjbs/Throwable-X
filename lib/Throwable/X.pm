@@ -169,8 +169,11 @@ with(
   },
 );
 
-has '+ident'       => (isa => 'Throwable::X::_Int');
-has '+message_fmt' => (isa => 'Throwable::X::_VisibleStr');
+# Can't do this because we can't +attr in roles.  Can't use methods with type,
+# because methods are too late to parameterize roles.  Would rather not add
+# MXRP as a prereq to all the subroles. -- rjbs, 2010-10-28
+# has '+ident'       => (isa => 'Throwable::X::_Ident');
+# has '+message_fmt' => (isa => 'Throwable::X::_VisibleStr');
 
 has is_public => (
   is  => 'ro',

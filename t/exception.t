@@ -8,6 +8,7 @@ use Test::More;
   use Moose;
 
   with 'Throwable::X';
+  use Throwable::X -all;
 
   sub x_tags { qw(whatever) }
 
@@ -15,7 +16,7 @@ use Test::More;
     is   => 'ro',
     isa  => 'Int',
     lazy => 1,
-    traits  => [ 'Throwable::X::Meta::Attribute::Payload' ],
+    traits  => [ Payload ],
     default => 36,
   );
 
