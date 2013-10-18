@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.007     2013-10-18 11:47:39 America/New_York
+          add repo and bugtracker metadata
+
 0.006     2010-10-29 12:06:58 America/New_York
           add nondetected prereqs
 
